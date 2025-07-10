@@ -1,4 +1,70 @@
+/* Google Fontsで読み込んだフォントを全体に適用 */
 body {
-background-color: #000;
-color: #fff;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 300;
+  margin: 20px;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* ヘッダーのスタイル */
+header {
+  background-color: #fff;
+  padding: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+
+h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ハンバーガーアイコン */
+.menu-icon {
+  position: fixed;     /* ← 画面に固定 */
+  top: 0;              /* 上から0px */
+  left: 0;             /* 左から0px */
+  font-size: 30px;
+  padding: 15px 20px;
+  cursor: pointer;
+  background-color: #eee;
+  z-index: 1001;       /* メニューより上に表示 */
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -250px; /* ← これで隠れるはず */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-nav.active {
+  left: 0;
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav ul li {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.side-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
