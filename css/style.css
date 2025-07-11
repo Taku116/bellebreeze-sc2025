@@ -1,6 +1,7 @@
 /* Google Fontsで読み込んだフォントを全体に適用 */
 body {
-  font-family: 'Zen Maru Gothic', sans-serif;
+ 
+  font-family: 'Kiwi Maru', sans-serif;
   font-weight: 300;
   margin: 20px;
   background-color: #f8f9fa;
@@ -8,27 +9,116 @@ body {
   font-size: 16px;
 }
 
+
+/* まずブラウザの余白をリセット */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+/* フルスクリーンのオーバーレイ */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+}
+
+/* 画像を縦長でも画面にフィットさせる */
+#intro-overlay img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* フェードアウト時のアニメーション */
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ヘッダーのスタイル */
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: #f8f9fa;
-  padding: 10px;
+  padding: 25px;
+  border-top: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
+  z-index: 1000;
 }
 
+/* ロゴのスタイル */
+.logo {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  font-size: 17px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  z-index: 1002;
+}
 
 h1 {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  margin-top: 50px;
+  font-family: 'Kiwi Maru', sans-serif;
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 40px;
   margin-bottom: 10px;
   text-align: center;
-  line-height: 1.6;
 }
 
-h2 {
-  font-family: 'Zen Maru Gothic', sans-serif;
+.h1_1{
+  margin-top: 70px;
+  font-family: 'Kiwi Maru', sans-serif;
   font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.h1_2{
+  margin-top: 0px;
+  font-family: 'Kiwi Maru', sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.h1_3{
+  margin-top: 10px;
+  font-family: 'Kiwi Maru', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+}
 
+.outline {
+  position: relative; /* ← これが重要！afterの基準になります */
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 5px; /* 下線との間隔 */
+}
+.outline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;                /* 線の太さ */
+  width: 40%;                /* 線の長さ（h2の40%） */
+  background-color: #ffb347; /* 線の色：明るいオレンジ */
+  border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
 }
 
 /* ハンバーガーアイコン */
@@ -37,9 +127,8 @@ h2 {
   top: 0;              /* 上から0px */
   left: 0;             /* 左から0px */
   font-size: 30px;
-  padding: 8px 13px;
+  padding: 3px 15px;
   cursor: pointer;
-  background-color: #eee;
   z-index: 1001;       /* メニューより上に表示 */
 }
 
