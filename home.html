@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BBSC25 Items</title>
+    <title>BBSC25 Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="intro-overlay">
-        <img src="cover.jpg" alt="カバー画像">
+        <img src="img/cover.jpg" alt="カバー画像">
     </div>
 
     <header>
@@ -26,16 +26,59 @@
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="items.html">Items</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
             <li><a href="team.html">Team</a></li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">Schedule</span>
+                <ul class="dropdown-menu">
+                    <li><a href="schedule.html#day1">DAY1</a></li>
+                    <li><a href="schedule.html#day2">DAY2</a></li>
+                    <li><a href="schedule.html#day3">DAY3</a></li>
+                    <li><a href="schedule.html#day4">DAY4</a></li>
+                </ul>
+            </li>
+            
         </ul>
     </nav>
     </header>
 
-    <script src="js/script.js"></script>
+    
     <div class="h1_1">Belle Breeze</div>
     <div class="h1_2">Summer Camp</div>
     <div class="h1_3">2025</div>
     <div class="outline">概要</div>
+    <div class="info-row">
+        <div class="info-label">日程</div>
+        <div class="info-detail">2025/08/13 (Wed) - 2025/08/16 (Sat)</div>
+    </div>
+
+    <div class="info-row">
+        <div class="info-label">宿泊先</div>
+        <div class="info-detail">
+            尾瀬岩倉高原 
+            <a href="https://www.oze-kaneyoshi.com/" target="_blank" rel="noopener noreferrer">
+                旅館かねよ志
+            </a>
+            <br>
+            <a href="https://maps.app.goo.gl/FtfFzpjdZrdTnzcr6" target="_blank" rel="noopener noreferrer">
+                （群馬県利根郡片品村土出２２９２）
+            </a>
+        </div>
+    </div>
+
+    <div class="info-row">
+        <div class="info-label">費用</div>
+        <div class="info-detail">一泊二日 : 12,000円<br>二泊三日 : <br>三泊四日 : </div>
+    </div>
+
+    <div class="info-row">
+        <div class="info-label">集合</div>
+        <div class="info-detail">時間 : 2025/08/13 (Wed)<br>場所 : 新宿</div>
+    </div>
+
+    <div class="info-row">
+        <div class="info-label">注意事項</div>
+        <div class="info-detail">保険証のコピーを持参</div>
+    </div>
+    <script src="js/script.js"></script>
 </body>
 </html>
