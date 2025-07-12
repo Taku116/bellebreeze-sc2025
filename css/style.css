@@ -1,21 +1,10 @@
-/* Google Fontsで読み込んだフォントを全体に適用 */
-body {
- 
-  font-family: 'Kiwi Maru', sans-serif;
-  font-weight: 300;
-  margin: 20px;
-  background-color: #f8f9fa;
-  color: #333;
-  font-size: 16px;
-}
-
-
 /* まずブラウザの余白をリセット */
 html, body {
   margin: 0;
   padding: 0;
 }
-/* フルスクリーンのオーバーレイ */
+
+/* 画像 */
 #intro-overlay {
   position: fixed;
   top: 0;
@@ -29,84 +18,137 @@ html, body {
   align-items: center;
   transition: opacity 1s ease;
 }
-
-/* 画像を縦長でも画面にフィットさせる */
 #intro-overlay img {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
 }
-
-/* フェードアウト時のアニメーション */
 #intro-overlay.fade-out {
   opacity: 0;
   pointer-events: none;
 }
 
-/* ヘッダーのスタイル */
+/* ヘッダー */
 header {
+  font-family: "Montserrat";
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #f8f9fa;
   padding: 25px;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
+  border-top: 2px solid #707070;
+  border-bottom: 2px solid #707070;
   z-index: 1000;
 }
-
-/* ロゴのスタイル */
 .logo {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   top: 50%;
   right: 60px;
   transform: translateY(-50%);
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 400;
   color: #333;
   text-decoration: none;
   z-index: 1002;
 }
 
+/* ドロップダウンメニューの基本 */
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  user-select: none;
+}
+/* 右向き三角 ▶ */
+.dropdown-toggle::after {
+  content: "▶";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+/* 開いたら下向き三角 ▼ に変える */
+.dropdown-toggle.active::after {
+  content: "▼";
+}
+.dropdown-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(51, 51, 51, 0);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 150px;
+  list-style: none;
+  z-index: 999;
+}
+
+/* 文字のスタイル集 */
+header h1 {
+
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%); /* 要素自身のサイズを考慮して真ん中に配置 */
+  margin: 0;
+  font-size: 25px; /* ヘッダーの高さに収まるように調整 */
+  color: #333;
+  font-weight: 500; /* 少し太くして視認性を上げる */
+}
+
 h1 {
   margin-top: 50px;
-  font-family: 'Kiwi Maru', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   font-size: 40px;
   margin-bottom: 10px;
   text-align: center;
 }
 
+/* ホーム */
 .h1_1{
   margin-top: 70px;
-  font-family: 'Kiwi Maru', sans-serif;
-  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
   font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
   margin-bottom: 0px;
   text-align: center;
 }
 .h1_2{
-  margin-top: 0px;
-  font-family: 'Kiwi Maru', sans-serif;
-  font-weight: 300;
+  margin-top: 5px;
+  font-family: "Montserrat", sans-serif;
   font-size: 40px;
+  font-weight: 500;
+  font-style: normal;
   margin-bottom: 0px;
   text-align: center;
 }
 .h1_3{
-  margin-top: 10px;
-  font-family: 'Kiwi Maru', sans-serif;
-  font-weight: 300;
+  margin-top: 5px;
+  font-family: "Montserrat", sans-serif;
   font-size: 30px;
-  margin-bottom: 40px;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 20px;
   text-align: center;
 }
-
 .outline {
+  font-family: 'Kiwi Maru', sans-serif;
   position: relative; /* ← これが重要！afterの基準になります */
-  margin-left: 20px;
-  font-size: 15px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 17px;
   font-weight: bold;
   padding-bottom: 5px; /* 下線との間隔 */
 }
@@ -120,8 +162,240 @@ h1 {
   background-color: #ffb347; /* 線の色：明るいオレンジ */
   border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
 }
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  margin-left: 10px;
+}
+.info-label {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 13px;
+  width: 80px;              /* 見出し幅を固定 */
+  font-weight: bold;
+  color: #333;
+}
+.info-detail {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 13px;
+  flex: 1;                  /* 残りの幅を自動で使う */
+  color: #555;
+  line-height: 1.6;
+}
 
-/* ハンバーガーアイコン */
+/* チーム */
+.team-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 80px; /* ヘッダーとの被りを防ぐ */
+}
+
+.team-card {
+  width: 28%;
+  min-width: 150px; /* これより小さくならないように */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 薄い影で見やすく */
+  transition: transform 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px); /* マウスを乗せると少し浮き上がる */
+}
+
+/* チームごとの色設定 */
+.team-card.red-team {
+  border-top: 10px solid #e74c3c; /* 赤 */
+  border-bottom: 10px solid #e74c3c;
+}
+.team-card.blue-team {
+  border-top: 10px solid #3498db;
+  border-bottom: 10px solid #3498db; /* 青 */
+}
+.team-card.yellow-team {
+  border-top: 10px solid #f1c40f;
+  border-bottom: 10px solid #f1c40f; /* 黄 */
+}
+
+.team-card h3 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.team-score {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.team-score span {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+/* スコアの数字をチームカラーに設定 */
+#score-red {
+  color: #e74c3c; /* 赤 */
+}
+#score-blue {
+  color: #3498db; /* 青 */
+}
+#score-yellow {
+  color: #f1c40f; /* 黄 */
+}
+
+
+.member-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center; /* メンバー名は左揃えに */
+}
+
+.member-list li {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 16px;
+  padding: 8px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 学年の区切り線のデザイン */
+.member-list .year-divider {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  background-color: #f2f2f2;
+  margin: 5px -20px 0 -20px; /* カードの左右いっぱいまで広げる */
+  padding: 8px 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+/* スケジュール */
+/* スケジュール タイムライン用スタイル */
+.schedule-container {
+  /* ヘッダーと被らないように上部に余白を設定 */
+  margin-top: 0px; 
+  padding: 0 20px;
+  /* PC表示でも見やすいように最大幅を設定 */
+  max-width: 800px;
+  /* 中央揃え */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.day-section {
+  margin-bottom: 20px;
+  scroll-margin-top: 90px;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 60px;
+  padding-left: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background-color: #ffb347;
+  border-radius: 2px;  /* ← これで丸くなる */
+}
+
+.timeline-item {
+  position: relative;
+  /* 各予定の間のスペース */
+  margin-bottom: 10px; 
+}
+
+/* タイムラインの丸いマーカー */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  /* 縦線の中心に配置するための調整 */
+  left: -27px; 
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border: 3px solid #ffb347;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-time {
+
+  position: absolute;
+  /* マーカーのさらに左に配置 */
+  left: -115px; 
+  top: 2px;
+  width: 80px;
+  text-align: right;
+  font-family: 'Kiwi Maru', sans-serif;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.timeline-content {
+  padding-left: 6px; 
+}
+
+.timeline-content h3 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 0px 0;
+  color: #333;
+}
+
+/* タイムライン内のpタグは既存のスタイルを上書き */
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  /* pタグのデフォルトマージンをリセット */
+  margin: 0; 
+  font-family: 'Kiwi Maru', sans-serif;
+}
+
+/* 既存のhday, hdateのスタイル調整 */
+.first-hday {
+  margin-top: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+.hday {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20px; /* 線とDAYの文字の間の余白 */
+  border-top: 2px dotted #cccccc; /* 上側に引く点線 */
+}
+.hdate {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* アイコンに関する */
 .menu-icon {
   position: fixed;     /* ← 画面に固定 */
   top: 0;              /* 上から0px */
@@ -138,7 +412,7 @@ h1 {
   left: -150px; /* ← これで隠れるはず */
   width: 150px;
   height: 100%;
-  background-color: rgba(51, 51, 51, 0.8);
+  background-color: rgba(51, 51, 51, 0.9);
   color: white;
   padding-top: 60px;
   transition: left 0.3s ease;
