@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
+    <h1>Schedule</h1>
     <!-- ハンバーガーアイコン -->
     <div class="menu-icon" id="menu-toggle">&#9776;</div>
 
@@ -22,24 +24,114 @@
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="items.html">Items</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
             <li><a href="team.html">Team</a></li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">Schedule</span>
+                <ul class="dropdown-menu">
+                    <li><a href="schedule.html#day1">DAY1</a></li>
+                    <li><a href="schedule.html#day2">DAY2</a></li>
+                    <li><a href="schedule.html#day3">DAY3</a></li>
+                    <li><a href="schedule.html#day4">DAY4</a></li>
+                </ul>
+            </li>
+            
         </ul>
     </nav>
     </header>
     
-    <h1>Schedule</h1>
-    <h2>1日目</h2>
-    <ul><li>10:00 集合・説明</li></ul>
+    
+    <div class="schedule-container">
+        <div class="day-section" id="day1">
+            <div class="first-hday">DAY1</div>
+            <div class="hdate">8/13 (Wed)</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00</div>
+                    <div class="timeline-content">
+                        <h3>集合</h3>
+                        <p>新宿にて集合後、バスで現地へ向かいます。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">11:00</div>
+                    <div class="timeline-content">
+                        <h3>昼食</h3>
+                        <p>１日目の昼食は持参してください。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">13:00</div>
+                    <div class="timeline-content">
+                        <h3>旅館到着・チェックイン</h3>
+                        <p>荷物を置きます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>2日目</h2>
-    <ul><li>午前：テニス</li></ul>
+        <div class="day-section" id="day2">
+            <div class="hday">DAY2</div>
+            <div class="hdate">8/14 (Thu)</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">7:00</div>
+                    <div class="timeline-content">
+                        <h3>朝食</h3>
+                        <p>食堂に集合してください。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">午前</div>
+                    <div class="timeline-content">
+                        <h3>テニス</h3>
+                        <p>近くのコートで練習を開始します。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00</div>
+                    <div class="timeline-content">
+                        <h3>昼食</h3>
+                        <p>旅館に戻り昼食。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>3日目</h2>
-    <ul><li>午後：自由行動</li></ul>
+        <div class="day-section" id="day3">
+            <div class="hday">DAY3</div>
+            <div class="hdate">8/15 (Fri)</div>
+             <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">午後</div>
+                    <div class="timeline-content">
+                        <h3>自由行動</h3>
+                        <p>川遊びをしたり、テニスをしたり自由に過ごしてください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>4日目</h2>
-    <ul><li>試合</li></ul>
+        <div class="day-section" id="day4">
+            <div class="hday">DAY4</div>
+            <div class="hdate">8/16 (Sat)</div>
+            <div class="timeline">
+                 <div class="timeline-item">
+                    <div class="timeline-time">9:00</div>
+                    <div class="timeline-content">
+                        <h3>試合</h3>
+                        <p>チームに分かれて団体戦を行います。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">13:00</div>
+                    <div class="timeline-content">
+                        <h3>現地出発</h3>
+                        <p>荷物をまとめ、忘れ物がないか確認します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="js/script.js"></script>
