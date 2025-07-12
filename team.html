@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BBCS25 Schedule</title>
+    <title>BBCS25Teamm</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
+    <h1>Team</h1>
     <!-- ハンバーガーアイコン -->
     <div class="menu-icon" id="menu-toggle">&#9776;</div>
 
@@ -22,15 +24,76 @@
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="items.html">Items</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
             <li><a href="team.html">Team</a></li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">Schedule</span>
+                <ul class="dropdown-menu">
+                    <li><a href="schedule.html#day1">DAY1</a></li>
+                    <li><a href="schedule.html#day2">DAY2</a></li>
+                    <li><a href="schedule.html#day3">DAY3</a></li>
+                    <li><a href="schedule.html#day4">DAY4</a></li>
+                </ul>
+            </li>
+            
         </ul>
     </nav>
     </header>
-    <h1>Team</h1>
-    <h2>赤</h2>
-    <h2>青</h2>
-    <h2>黄</h2>    
+    
+    <div class="team-container">
+      <div class="team-card red-team">
+        <h3>赤チーム</h3>
+        <div class="team-score">
+          SCORE: <span id="score-red">0</span>
+        </div>
+        <ul class="member-list">
+          <li class="year-divider">3年生</li>
+          <li>名前</li>
+          <li class="year-divider">2年生</li>
+          <li>名前</li>
+          <li>名前</li>
+          <li class="year-divider">1年生</li>
+          <li>名前</li>
+          <li class="year-divider">OB・OG</li>
+          <li>名前</li>
+        </ul>
+      </div>
+    
+      <div class="team-card blue-team">
+        <h3>青チーム</h3>
+        <div class="team-score">
+          SCORE: <span id="score-blue">0</span>
+        </div>
+        <ul class="member-list">
+          <li class="year-divider">3年生</li>
+          <li>名前</li>
+          <li class="year-divider">2年生</li>
+          <li>名前</li>
+          <li class="year-divider">1年生</li>
+          <li>名前</li>
+          <li>名前</li>
+          <li class="year-divider">OB・OG</li>
+          <li>名前</li>
+        </ul>
+      </div>
+    
+      <div class="team-card yellow-team">
+        <h3>黄チーム</h3>
+        <div class="team-score">
+          SCORE: <span id="score-yellow">0</span>
+        </div>
+        <ul class="member-list">
+          <li class="year-divider">3年生</li>
+          <li>名前</li>
+          <li class="year-divider">2年生</li>
+          <li>名前</li>
+          <li class="year-divider">1年生</li>
+          <li>名前</li>
+          <li class="year-divider">OB・OG</li>
+          <li>名前</li>
+          <li>名前</li>
+        </ul>
+      </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>
