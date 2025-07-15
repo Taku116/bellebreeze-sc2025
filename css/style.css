@@ -208,7 +208,7 @@ h1 {
   font-family: "Kiwi Maru", sans-serif;
   font-size: 18px;
   padding-bottom: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 3px;
   margin-left: 10px;
   position: relative;
 }
@@ -221,6 +221,7 @@ h1 {
   width: 50%;                /* 線の長さ（h2の40%） */
   background-color: #ffb347; /* 線の色：明るいオレンジ */
   border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
+  margin-bottom: 0px;
 }
 
 .item-list {
