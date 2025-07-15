@@ -232,6 +232,21 @@ h1 {
   margin-right: 5px;
   gap: 5px;
 }
+.item-wrapper {
+  display: flex;
+  flex-direction: column; /* ラベルと補足を縦に並べる */
+}
+.item-note {
+  font-family: 'Kiwi Maru', sans-serif; /* フォントを他のテキストと合わせる */
+  font-size: 12px;           /* 文字を小さくする */
+  color: #666;              /* 文字色を少しグレーにする */
+  padding-left: 32px;      /* チェックボックスの幅と隙間を考慮して左に余白を設ける */
+  margin-top: 0px;           /* 持ち物との間の少しの余白 */
+  margin-bottom: 0px;        /* 次の項目との間の余白 */
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 1.4;          /* 行間を調整 */
+}
 
 label {
   display: flex;
@@ -307,6 +322,10 @@ label {
   border-top: 10px solid #f1c40f;
   border-bottom: 10px solid #f1c40f; /* 黄 */
 }
+.team-card.green-team {
+  border-top: 10px solid #27ae60	;
+  border-bottom: 10px solid #27ae60; /* 緑 */
+}
 
 .team-card h3 {
   font-family: 'Kiwi Maru', sans-serif;
@@ -338,6 +357,10 @@ label {
 #score-yellow {
   color: #f1c40f; /* 黄 */
 }
+#score-green {
+  color: #27ae60; /* 緑 */
+}
+
 
 
 .member-list {
