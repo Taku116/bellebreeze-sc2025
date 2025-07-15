@@ -63,19 +63,27 @@ header {
   padding-right: 20px;
   user-select: none;
 }
-/* 右向き三角 ▶ */
+/* 新しいアイコン（SVG）のデザイン */
 .dropdown-toggle::after {
-  content: "▶";
+  content: ""; /* テキストではなく画像を使うので空にする */
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
-  transition: transform 0.3s ease;
+  width: 16px;  /* アイコンの幅 */
+  height: 16px; /* アイコンの高さ */
+  
+  /* SVGアイコンを背景画像として指定 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath fill='%23FFFFFF' d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease; /* 回転のアニメーション */
 }
-/* 開いたら下向き三角 ▼ に変える */
+
+/* 開いたらアイコンを90度回転させる */
 .dropdown-toggle.active::after {
-  content: "▼";
+  transform: translateY(-50%) rotate(90deg);
 }
 .dropdown-menu {
   max-height: 0;
@@ -184,17 +192,93 @@ h1 {
   line-height: 1.6;
 }
 
+/* 持ち物 */
+.item-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.category {
+  padding: 0px;
+}
+
+.category h2 {
+  font-family: "Kiwi Maru", sans-serif;
+  font-size: 18px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  position: relative;
+}
+.category h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;                /* 線の太さ */
+  width: 50%;                /* 線の長さ（h2の40%） */
+  background-color: #ffb347; /* 線の色：明るいオレンジ */
+  border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
+}
+
+.item-list {
+  font-family: "Kiwi Maru", sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-right: 5px;
+  gap: 5px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+
 /* チーム */
+.page-description {
+  margin-top: 80px;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column; /* 子要素を縦に並べる */
+  align-items: center;   /* 子要素を水平方向中央に配置 */
+  gap: 0px;             /* 要素間の余白を10pxに指定 */
+}
+.page-description p {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  text-align: center; /* テキストを中央揃え */
+  max-width: 600px;   /* 最大幅 */
+  margin: 0px;          /* Flexboxで制御するためマージンは不要 */
+}
+.last-updated {
+  font-size: 13px;
+  color: #888;
+  font-family: 'Montserrat', sans-serif;
+  text-align: right;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
 .team-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* space-aroundから変更 */
   padding: 20px;
-  margin-top: 80px; /* ヘッダーとの被りを防ぐ */
+  overflow-x: auto; /* 横スクロールを可能にする */
+  padding-bottom: 15px; /* スクロールバー用の余白 */
+  margin-top: 0px !important;
 }
 
 .team-card {
   width: 28%;
-  min-width: 150px; /* これより小さくならないように */
+  min-width: 120px; /* これより小さくならないように */
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
@@ -224,9 +308,9 @@ h1 {
 
 .team-card h3 {
   font-family: 'Kiwi Maru', sans-serif;
-  font-size: 24px;
-  margin-top: 0;
-  margin-bottom: 15px;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .team-score {
@@ -281,26 +365,68 @@ h1 {
 }
 
 /* スケジュール */
-/* スケジュール タイムライン用スタイル */
+
+/* スケジュールページ 注意事項ボックス */
+.notes-box {
+  max-width: 800px;
+  /* 上(ヘッダーとの距離)・左右(中央寄せ)・下(DAY1との距離) の余白 */
+  margin: 80px auto 10px auto; 
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid #ffb347; /* オレンジ系の枠線 */
+  background-color: #fffaf0; /* 薄いクリーム色の背景 */
+  border-radius: 8px;      /* 角を少し丸める */
+  padding: 20px 30px;      /* ボックスの内側の余白 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  scroll-margin-top: 60px;
+}
+
+.notes-box h4 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #ffdda3; /* 見出しの下に点線 */
+}
+
+.notes-box ul {
+  margin: 0;
+  padding-left: 20px; /* リストの左側の余白 */
+}
+
+.notes-box li {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 8px; /* 各項目間の余白 */
+}
+
+/* 最後の項目の下の余白は削除 */
+.notes-box li:last-child {
+  margin-bottom: 0;
+}
+
 .schedule-container {
   /* ヘッダーと被らないように上部に余白を設定 */
   margin-top: 0px; 
   padding: 0 20px;
   /* PC表示でも見やすいように最大幅を設定 */
   max-width: 800px;
-  /* 中央揃え */
   margin-left: auto;
   margin-right: auto;
 }
 
 .day-section {
   margin-bottom: 20px;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 60px;
 }
 
 .timeline {
   position: relative;
-  margin-left: 60px;
+  margin-left: 50px;
   padding-left: 20px;
 }
 
@@ -318,7 +444,7 @@ h1 {
 .timeline-item {
   position: relative;
   /* 各予定の間のスペース */
-  margin-bottom: 10px; 
+  margin-bottom: 14px; 
 }
 
 /* タイムラインの丸いマーカー */
@@ -326,10 +452,10 @@ h1 {
   content: '';
   position: absolute;
   /* 縦線の中心に配置するための調整 */
-  left: -27px; 
-  top: 5px;
-  width: 12px;
-  height: 12px;
+  left: -24px; 
+  top: 6px;
+  width: 6px;
+  height: 6px;
   background-color: white;
   border: 3px solid #ffb347;
   border-radius: 50%;
@@ -347,7 +473,7 @@ h1 {
   font-family: 'Kiwi Maru', sans-serif;
   font-weight: bold;
   color: #333;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .timeline-content {
@@ -364,7 +490,7 @@ h1 {
 
 /* タイムライン内のpタグは既存のスタイルを上書き */
 .timeline-content p {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
   color: #555;
   /* pタグのデフォルトマージンをリセット */
@@ -372,18 +498,17 @@ h1 {
   font-family: 'Kiwi Maru', sans-serif;
 }
 
-/* 既存のhday, hdateのスタイル調整 */
 .first-hday {
-  margin-top: 60px;
+  margin-top: 0px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: bold;
   text-align: center;
 }
 .hday {
   margin-top: 20px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: bold;
   text-align: center;
   padding-top: 20px; /* 線とDAYの文字の間の余白 */
