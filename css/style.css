@@ -437,7 +437,7 @@ label {
 .schedule-container {
   /* ヘッダーと被らないように上部に余白を設定 */
   margin-bottom: 50px; 
-  padding: 0px 40px;
+  padding: 0px 30px;
   /* PC表示でも見やすいように最大幅を設定 */
   max-width: 800px;
   margin-left: auto;
