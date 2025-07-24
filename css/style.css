@@ -167,7 +167,7 @@ h1 {
   left: 0;
   height: 3px;                /* 線の太さ */
   width: 40%;                /* 線の長さ（h2の40%） */
-  background-color: #ffb347; /* 線の色：明るいオレンジ */
+  background-color: #9B59B6; /* 線の色：明るいオレンジ */
   border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
 }
 .info-row {
@@ -219,7 +219,7 @@ h1 {
   left: 0;
   height: 3px;                /* 線の太さ */
   width: 50%;                /* 線の長さ（h2の40%） */
-  background-color: #ffb347; /* 線の色：明るいオレンジ */
+  background-color: #9B59B6; /* 線の色：明るいオレンジ */
   border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
   margin-bottom: 0px;
 }
@@ -311,20 +311,20 @@ label {
 
 /* チームごとの色設定 */
 .team-card.red-team {
-  border-top: 10px solid #e74c3c; /* 赤 */
-  border-bottom: 10px solid #e74c3c;
+  border-top: 10px solid #F78DA7; /* ピンク */
+  border-bottom: 10px solid #F78DA7;
 }
 .team-card.blue-team {
-  border-top: 10px solid #3498db;
-  border-bottom: 10px solid #3498db; /* 青 */
+  border-top: 10px solid #87CEEB;
+  border-bottom: 10px solid #87CEEB; /* サックス */
 }
 .team-card.yellow-team {
-  border-top: 10px solid #f1c40f;
-  border-bottom: 10px solid #f1c40f; /* 黄 */
+  border-top: 10px solid #85CC9C;
+  border-bottom: 10px solid #85CC9C; /* 黄緑 */
 }
 .team-card.green-team {
-  border-top: 10px solid #27ae60	;
-  border-bottom: 10px solid #27ae60; /* 緑 */
+  border-top: 10px solid #FFA96B	;
+  border-bottom: 10px solid #FFA96B; /* オレンジ */
 }
 
 .team-card h3 {
@@ -349,16 +349,16 @@ label {
 
 /* スコアの数字をチームカラーに設定 */
 #score-red {
-  color: #e74c3c; /* 赤 */
+  color: #F78DA7; /* ピンク */
 }
 #score-blue {
-  color: #3498db; /* 青 */
+  color: #87CEEB; /* サックス */
 }
 #score-yellow {
-  color: #f1c40f; /* 黄 */
+  color: #85CC9C; /* 黄緑 */
 }
 #score-green {
-  color: #27ae60; /* 緑 */
+  color: #FFA96B; /* オレンジ */
 }
 
 
@@ -398,8 +398,8 @@ label {
   margin: 80px auto 10px auto; 
   margin-left: 10px;
   margin-right: 10px;
-  border: 2px solid #ffb347; /* オレンジ系の枠線 */
-  background-color: #fffaf0; /* 薄いクリーム色の背景 */
+  border: 2px solid #9B59B6; /* オレンジ系の枠線 */
+  background-color: #F5EBFA; /* 薄いクリーム色の背景 */
   border-radius: 8px;      /* 角を少し丸める */
   padding: 20px 30px;      /* ボックスの内側の余白 */
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -413,7 +413,7 @@ label {
   margin-top: 0;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed #ffdda3; /* 見出しの下に点線 */
+  border-bottom: 1px dashed #B799D6; /* 見出しの下に点線 */
 }
 
 .notes-box ul {
@@ -436,8 +436,8 @@ label {
 
 .schedule-container {
   /* ヘッダーと被らないように上部に余白を設定 */
-  margin-top: 0px; 
-  padding: 0 20px;
+  margin-bottom: 50px; 
+  padding: 0px 40px;
   /* PC表示でも見やすいように最大幅を設定 */
   max-width: 800px;
   margin-left: auto;
@@ -445,7 +445,7 @@ label {
 }
 
 .day-section {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   scroll-margin-top: 60px;
 }
 
@@ -462,7 +462,7 @@ label {
   bottom: 0;
   left: 0;
   width: 4px;
-  background-color: #ffb347;
+  background-color: #9B59B6;
   border-radius: 2px;  /* ← これで丸くなる */
 }
 
@@ -482,7 +482,7 @@ label {
   width: 6px;
   height: 6px;
   background-color: white;
-  border: 3px solid #ffb347;
+  border: 3px solid #9B59B6;
   border-radius: 50%;
   z-index: 1;
 }
