@@ -537,7 +537,7 @@ label {
   font-weight: bold;
   text-align: center;
   padding-top: 20px; /* 線とDAYの文字の間の余白 */
-  border-top: 2px dotted #cccccc; /* 上側に引く点線 */
+  border-top: 2px dotted #A9BDDB; /* 上側に引く点線 */
 }
 .hdate {
   font-family: 'Montserrat', sans-serif;
