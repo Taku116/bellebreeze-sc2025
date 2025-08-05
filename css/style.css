@@ -475,20 +475,14 @@ label {
   background-color: #f9fbfd;
 }
 
-/* スクロールバーのデザイン（モダンブラウザ向け） */
-.table-scroll-container::-webkit-scrollbar {
-  width: 8px;
-}
-.table-scroll-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
+/* スクロールバーのデザイン (WebKitブラウザ向け - Chrome, Safari) */
 .table-scroll-container::-webkit-scrollbar-thumb {
-  background: #ccc; 
+  background-color: rgba(0, 0, 0, 0.2); /* 薄いグレーで普段は目立たなく */
   border-radius: 10px;
 }
+
 .table-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #aaa; 
+  background-color: rgba(0, 0, 0, 0.4); /* ホバー時にもう少し濃く */
 }
 
 /* スケジュール */
