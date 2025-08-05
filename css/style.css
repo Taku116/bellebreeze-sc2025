@@ -389,6 +389,107 @@ label {
   border-bottom: 1px solid #ddd;
 }
 
+/* ===== Drink/Snack List Table (スクロール対応版) ===== */
+
+.drink-list-container {
+  padding: 0 15px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+.drink-list-container h2 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.drink-list-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px; 
+  height: 3px;
+  background-color: #26466D;
+  border-radius: 2px;
+}
+
+/* テーブルを囲むスクロール用コンテナ */
+.table-scroll-container {
+  max-height: 600px;  /* 表の最大の高さを指定。ここを調整してお好みの高さにできます */
+  overflow-y: auto;   /* 高さを超えたら縦スクロールバーを表示 */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px; /* 全体を角丸にする */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+}
+
+.drink-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Kiwi Maru', sans-serif;
+}
+
+/* 表のヘッダー */
+.drink-table th {
+  position: sticky; /* コンテナ内で固定 */
+  top: 0;           /* コンテナの最上部に固定 */
+  background-color: #26466D;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 14px 15px;
+  text-align: center;
+  z-index: 10;
+  /* ヘッダーの下に細い線を追加して境界を明確に */
+  border-bottom: 2px solid #1a324f;
+}
+
+/* 表のデータセル */
+.drink-table td {
+  padding: 10px 15px;
+  border-bottom: 1px dotted #A9BDDB; /* ← 紺色の薄い点線に変更 */
+  font-size: 15px;
+  text-align: left;
+}
+
+
+/* 中央揃えにしたい列の指定 */
+.drink-table td:nth-child(2),
+.drink-table td:nth-child(3) {
+  text-align: center;
+}
+
+/* 最後の行の下線を消す */
+.drink-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ストライプ（一行おきの背景色）を少しだけ濃くして視認性アップ */
+.drink-table tbody tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+/* スクロールバーのデザイン（モダンブラウザ向け） */
+.table-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+.table-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 10px;
+}
+.table-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #aaa; 
+}
+
 /* スケジュール */
 
 /* スケジュールページ 注意事項ボックス */
