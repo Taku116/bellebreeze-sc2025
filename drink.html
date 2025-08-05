@@ -1,55 +1,692 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BBSC25 Drink</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
-</head>
-<body>
+/* まずブラウザの余白をリセット */
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-    <header>
-    <h1>Drink</h1>
+/* 画像 */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+}
+#intro-overlay img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
 
-    <!-- ハンバーガーアイコン -->
-    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+/* ヘッダー */
+header {
+  font-family: "Montserrat";
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-top: 2px solid #707070;
+  border-bottom: 2px solid #707070;
+  z-index: 1000;
+}
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  text-decoration: none;
+  z-index: 1002;
+}
 
-    <!-- ロゴ（右上に配置） -->
-    <a href="home.html" class="logo">BBSC25</a>
+/* ドロップダウンメニューの基本 */
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  user-select: none;
+}
+/* 新しいアイコン（SVG）のデザイン */
+.dropdown-toggle::after {
+  content: ""; /* テキストではなく画像を使うので空にする */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;  /* アイコンの幅 */
+  height: 16px; /* アイコンの高さ */
+  
+  /* SVGアイコンを背景画像として指定 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath fill='%23FFFFFF' d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease; /* 回転のアニメーション */
+}
 
-    <!-- ナビゲーション -->
-    <nav id="nav" class="side-nav">
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="items.html">Items</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="drink.html">Drink</a></li>
-            <li class="dropdown">
-                <span class="dropdown-toggle">Schedule</span>
-                <ul class="dropdown-menu">
-                    <li><a href="schedule.html#day1">DAY1</a></li>
-                    <li><a href="schedule.html#day2">DAY2</a></li>
-                    <li><a href="schedule.html#day3">DAY3</a></li>
-                    <li><a href="schedule.html#day4">DAY4</a></li>
-                </ul>
-            </li>
-            
-        </ul>
-    </nav>
-    </header>
-    <div class="notes-box">
-      <h4>飲み物・お菓子について</h4>
-      <ul>
-        <li>宴会やレク用にサークルで買った飲み物やお菓子は、近日こちらで公開予定です。</li>
-        <li>「これも欲しい！」というものがあれば、自由に持ち込みOKです。</li>
-        <li>リクエストがあれば、8/6までにアンケートにぜひ回答してください。</li>
-      </ul>
-    </div>
-    <div class="last-updated">（最終更新 2025/08/01 13:00）</div>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeiy8jfFeno1UxyIAu77VfLSg6m2mqxMhbIn7mz0pRjJ9SoQw/viewform?embedded=true" width="360" height="871" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-    <script src="js/script.js"></script>
-</body>
-</html>
+/* 開いたらアイコンを90度回転させる */
+.dropdown-toggle.active::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+.dropdown-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(51, 51, 51, 0);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 150px;
+  list-style: none;
+  z-index: 999;
+}
+
+/* 文字のスタイル集 */
+header h1 {
+
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%); /* 要素自身のサイズを考慮して真ん中に配置 */
+  margin: 0;
+  font-size: 25px; /* ヘッダーの高さに収まるように調整 */
+  color: #333;
+  font-weight: 500; /* 少し太くして視認性を上げる */
+}
+
+h1 {
+  margin-top: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ホーム */
+.h1_1{
+  margin-top: 70px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.h1_2{
+  margin-top: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  font-style: normal;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.h1_3{
+  margin-top: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.outline {
+  font-family: 'Kiwi Maru', sans-serif;
+  position: relative; /* ← これが重要！afterの基準になります */
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: bold;
+  padding-bottom: 5px; /* 下線との間隔 */
+}
+.outline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;                /* 線の太さ */
+  width: 40%;                /* 線の長さ（h2の40%） */
+  background-color: #26466D; /* 線の色：明るいオレンジ */
+  border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
+}
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  margin-left: 10px;
+}
+.info-label {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 13px;
+  width: 80px;              /* 見出し幅を固定 */
+  font-weight: bold;
+  color: #333;
+}
+.info-detail {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 13px;
+  flex: 1;                  /* 残りの幅を自動で使う */
+  color: #555;
+  line-height: 1.6;
+}
+
+/* 持ち物 */
+.item-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+.category {
+  padding: 0px;
+}
+
+.category h2 {
+  font-family: "Kiwi Maru", sans-serif;
+  font-size: 18px;
+  padding-bottom: 5px;
+  margin-bottom: 3px;
+  margin-left: 10px;
+  position: relative;
+}
+.category h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;                /* 線の太さ */
+  width: 50%;                /* 線の長さ（h2の40%） */
+  background-color: #26466D ; /* 線の色：明るいオレンジ */
+  border-radius: 2px;        /* 少し丸くする（おしゃれ度UP） */
+  margin-bottom: 0px;
+}
+
+.item-list {
+  font-family: "Kiwi Maru", sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-right: 5px;
+  gap: 5px;
+}
+.item-wrapper {
+  display: flex;
+  flex-direction: column; /* ラベルと補足を縦に並べる */
+}
+.item-note {
+  font-family: 'Kiwi Maru', sans-serif; /* フォントを他のテキストと合わせる */
+  font-size: 12px;           /* 文字を小さくする */
+  color: #666;              /* 文字色を少しグレーにする */
+  padding-left: 32px;      /* チェックボックスの幅と隙間を考慮して左に余白を設ける */
+  margin-top: 0px;           /* 持ち物との間の少しの余白 */
+  margin-bottom: 0px;        /* 次の項目との間の余白 */
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 1.4;          /* 行間を調整 */
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+
+/* チーム */
+.page-description {
+  margin-top: 80px;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column; /* 子要素を縦に並べる */
+  align-items: center;   /* 子要素を水平方向中央に配置 */
+  gap: 0px;             /* 要素間の余白を10pxに指定 */
+}
+.page-description p {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  text-align: center; /* テキストを中央揃え */
+  max-width: 600px;   /* 最大幅 */
+  margin: 0px;          /* Flexboxで制御するためマージンは不要 */
+}
+.last-updated {
+  font-size: 13px;
+  color: #888;
+  font-family: 'Montserrat', sans-serif;
+  text-align: right;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+.team-container {
+  display: flex;
+  justify-content: space-between; /* space-aroundから変更 */
+  padding: 20px;
+  overflow-x: auto; /* 横スクロールを可能にする */
+  padding-bottom: 15px; /* スクロールバー用の余白 */
+  margin-top: 0px !important;
+}
+
+.team-card {
+  width: 28%;
+  min-width: 120px; /* これより小さくならないように */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 薄い影で見やすく */
+  transition: transform 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px); /* マウスを乗せると少し浮き上がる */
+}
+
+/* チームごとの色設定 */
+.team-card.red-team {
+  border-top: 10px solid #F78DA7; /* ピンク */
+  border-bottom: 10px solid #F78DA7;
+}
+.team-card.blue-team {
+  border-top: 10px solid #87CEEB;
+  border-bottom: 10px solid #87CEEB; /* サックス */
+}
+.team-card.yellow-team {
+  border-top: 10px solid #85CC9C;
+  border-bottom: 10px solid #85CC9C; /* 黄緑 */
+}
+.team-card.green-team {
+  border-top: 10px solid #FFA96B	;
+  border-bottom: 10px solid #FFA96B; /* オレンジ */
+}
+
+.team-card h3 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.team-score {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.team-score span {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+/* スコアの数字をチームカラーに設定 */
+#score-red {
+  color: #F78DA7; /* ピンク */
+}
+#score-blue {
+  color: #87CEEB; /* サックス */
+}
+#score-yellow {
+  color: #85CC9C; /* 黄緑 */
+}
+#score-green {
+  color: #FFA96B; /* オレンジ */
+}
+
+
+
+.member-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center; /* メンバー名は左揃えに */
+}
+
+.member-list li {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 16px;
+  padding: 8px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 学年の区切り線のデザイン */
+.member-list .year-divider {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  background-color: #f2f2f2;
+  margin: 5px -20px 0 -20px; /* カードの左右いっぱいまで広げる */
+  padding: 8px 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ===== Drink/Snack List Table (スクロール対応版) ===== */
+
+.drink-list-container {
+  padding: 0 15px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+.drink-list-container h2 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.drink-list-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px; 
+  height: 3px;
+  background-color: #26466D;
+  border-radius: 2px;
+}
+
+/* テーブルを囲むスクロール用コンテナ */
+.table-scroll-container {
+  max-height: 600px;  /* 表の最大の高さを指定。ここを調整してお好みの高さにできます */
+  overflow-y: auto;   /* 高さを超えたら縦スクロールバーを表示 */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px; /* 全体を角丸にする */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+}
+
+.drink-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Kiwi Maru', sans-serif;
+}
+
+/* 表のヘッダー */
+.drink-table th {
+  position: sticky; /* コンテナ内で固定 */
+  top: 0;           /* コンテナの最上部に固定 */
+  background-color: #26466D;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 14px 15px;
+  text-align: center;
+  z-index: 10;
+  /* ヘッダーの下に細い線を追加して境界を明確に */
+  border-bottom: 2px solid #1a324f;
+}
+
+/* 表のデータセル */
+.drink-table td {
+  padding: 10px 15px;
+  border-bottom: 1px dotted #A9BDDB; /* ← 紺色の薄い点線に変更 */
+  font-size: 15px;
+  text-align: left;
+}
+
+
+/* 中央揃えにしたい列の指定 */
+.drink-table td:nth-child(2),
+.drink-table td:nth-child(3) {
+  text-align: center;
+}
+
+/* 最後の行の下線を消す */
+.drink-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ストライプ（一行おきの背景色）を少しだけ濃くして視認性アップ */
+.drink-table tbody tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+/* スクロールバーのデザイン（モダンブラウザ向け） */
+.table-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+.table-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 10px;
+}
+.table-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #aaa; 
+}
+
+/* スケジュール */
+
+/* スケジュールページ 注意事項ボックス */
+.notes-box {
+  max-width: 800px;
+  /* 上(ヘッダーとの距離)・左右(中央寄せ)・下(DAY1との距離) の余白 */
+  margin: 80px auto 10px auto; 
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid #26466D ; /* オレンジ系の枠線 */
+  background-color: #E6F0FA; /* 薄いクリーム色の背景 */
+  border-radius: 8px;      /* 角を少し丸める */
+  padding: 20px 30px;      /* ボックスの内側の余白 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  scroll-margin-top: 60px;
+}
+
+.notes-box h4 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #A9BDDB; /* 見出しの下に点線 */
+}
+
+.notes-box ul {
+  margin: 0;
+  padding-left: 20px; /* リストの左側の余白 */
+}
+
+.notes-box li {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 8px; /* 各項目間の余白 */
+}
+
+/* 最後の項目の下の余白は削除 */
+.notes-box li:last-child {
+  margin-bottom: 0;
+}
+
+.schedule-container {
+  /* ヘッダーと被らないように上部に余白を設定 */
+  margin-bottom: 50px; 
+  padding: 0px 30px;
+  /* PC表示でも見やすいように最大幅を設定 */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.day-section {
+  margin-bottom: 40px;
+  scroll-margin-top: 60px;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 50px;
+  padding-left: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background-color: #26466D ;
+  border-radius: 2px;  /* ← これで丸くなる */
+}
+
+.timeline-item {
+  position: relative;
+  /* 各予定の間のスペース */
+  margin-bottom: 14px; 
+}
+
+/* タイムラインの丸いマーカー */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  /* 縦線の中心に配置するための調整 */
+  left: -24px; 
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border: 3px solid #26466D ;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-time {
+
+  position: absolute;
+  /* マーカーのさらに左に配置 */
+  left: -115px; 
+  top: 2px;
+  width: 80px;
+  text-align: right;
+  font-family: 'Kiwi Maru', sans-serif;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.timeline-content {
+  padding-left: 6px; 
+}
+
+.timeline-content h3 {
+  font-family: 'Kiwi Maru', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 0px 0;
+  color: #333;
+}
+
+/* タイムライン内のpタグは既存のスタイルを上書き */
+.timeline-content p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+  /* pタグのデフォルトマージンをリセット */
+  margin: 0; 
+  font-family: 'Kiwi Maru', sans-serif;
+}
+
+.first-hday {
+  margin-top: 0px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+.hday {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20px; /* 線とDAYの文字の間の余白 */
+  border-top: 2px dotted #A9BDDB; /* 上側に引く点線 */
+}
+.hdate {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* アイコンに関する */
+.menu-icon {
+  position: fixed;     /* ← 画面に固定 */
+  top: 0;              /* 上から0px */
+  left: 0;             /* 左から0px */
+  font-size: 30px;
+  padding: 3px 15px;
+  cursor: pointer;
+  z-index: 1001;       /* メニューより上に表示 */
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -150px; /* ← これで隠れるはず */
+  width: 150px;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: white;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-nav.active {
+  left: 0;
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav ul li {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.side-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
