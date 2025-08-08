@@ -405,15 +405,15 @@ label {
   margin-bottom: 15px;
   position: relative;
   padding-bottom: 10px;
+  display: inline-block;
 }
 
 .drink-list-container h2::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 130px; 
+  left: 0;
+  width: 100%; 
   height: 3px;
   background-color: #26466D;
   border-radius: 2px;
@@ -484,6 +484,11 @@ label {
 .table-scroll-container::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.4); /* ホバー時にもう少し濃く */
 }
+
+.accordion-content {
+    display: none;
+}
+
 
 /* スケジュール */
 
