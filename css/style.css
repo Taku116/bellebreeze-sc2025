@@ -404,6 +404,7 @@ label {
     grid-template-columns: 1fr; /* 1列のグリッド */
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 30px;
 }
 
 /* ヘッダーと行の共通スタイル */
