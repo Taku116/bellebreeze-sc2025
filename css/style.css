@@ -436,7 +436,7 @@ label {
 }
 
 /* セルの配置を調整 */
-.item-cell { text-align: center; }
+.item-cell { text-align: left; }
 .size-cell, .quantity-cell { text-align: center; }
 .sub-item { padding-left: 20px; } /* 子項目のインデント */
 
