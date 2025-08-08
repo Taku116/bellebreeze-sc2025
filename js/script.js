@@ -39,27 +39,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // アコーディオン機能
 document.addEventListener('DOMContentLoaded', () => {
-    // 既存のアコーディオン機能のJavaScriptを修正
     const toggles = document.querySelectorAll(".accordion-toggle");
 
     toggles.forEach(toggle => {
         toggle.addEventListener("click", () => {
             toggle.classList.toggle("active");
-
-            // クリックされたヘッダーの次の要素から、アコーディオン項目を探す
-            let nextElement = toggle.nextElementSibling;
-            while (nextElement && nextElement.classList.contains('accordion-content')) {
-                // 表示/非表示を切り替える
+            
+            // 次の要素が accordion-wrapper であることを想定
+            const wrapper = toggle.nextElementSibling;
+            if (wrapper && wrapper.classList.contains('accordion-wrapper')) {
                 if (toggle.classList.contains('active')) {
-                    nextElement.classList.add('active');
+                    wrapper.classList.add('active');
                 } else {
-                    nextElement.classList.remove('active');
+                    wrapper.classList.remove('active');
                 }
-                nextElement = nextElement.nextElementSibling;
             }
         });
     });
 });
+
 
 
 
