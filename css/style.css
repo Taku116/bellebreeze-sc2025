@@ -489,29 +489,36 @@ label {
 }
 
 /* アコーディオンの開閉アニメーション */
-.accordion-wrapper {
+.accordion-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
+    padding-top: 0; /* paddingもアニメーション対象にする */
+    padding-bottom: 0;
 }
 
-.accordion-wrapper.active {
+/* 開いたときのスタイル */
+.accordion-content.active {
     max-height: 200px; /* 十分な高さを指定 */
     opacity: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* 親項目のスタイル */
+.accordion-toggle {
+    cursor: pointer;
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px dotted #A9BDDB;
 }
 
 /* 触ったら動くマーク */
-.accordion-toggle td {
-    position: relative;
-    padding-left: 20px;
-    cursor: pointer;
-}
-
-.accordion-toggle td::after {
+.accordion-toggle::after {
     content: "";
     position: absolute;
-    left: 0;
+    right: 0;
     top: 50%;
     transform: translateY(-50%) rotate(0deg);
     width: 16px;
@@ -523,7 +530,8 @@ label {
     transition: transform 0.3s ease;
 }
 
-.accordion-toggle.active td::after {
+/* 親項目が開いたときのマークのスタイル */
+.accordion-toggle.active::after {
     transform: translateY(-50%) rotate(90deg);
 }
 
@@ -534,9 +542,7 @@ label {
 }
 
 .nested-table td {
-    padding: 10px 15px;
-    border-bottom: 1px dotted #A9BDDB;
-    font-size: 15px;
+    padding: 5px 15px;
 }
 
 
