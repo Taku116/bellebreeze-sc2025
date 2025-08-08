@@ -390,137 +390,85 @@ label {
 }
 
 /* ===== Drink/Snack List Table (スクロール対応版) ===== */
-
-.drink-list-container {
-  padding: 0 15px;
-  margin: 30px auto;
-  max-width: 800px;
-  margin-bottom: 60px;
-}
-
-.drink-list-container h2 {
-  font-family: 'Kiwi Maru', sans-serif;
-  font-size: 22px;
-  margin-bottom: 15px;
-  position: relative;
-  padding-bottom: 10px;
-  display: inline-block;
-}
-
-.drink-list-container h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%; 
-  height: 3px;
-  background-color: #26466D;
-  border-radius: 2px;
-}
-.h2-wrapper {
-    text-align: center;
-}
-
-
-/* テーブルを囲むスクロール用コンテナ */
+/* テーブルの代わりとなるコンテナ */
 .table-scroll-container {
-  max-height: 600px;  /* 表の最大の高さを指定。ここを調整してお好みの高さにできます */
-  overflow-y: auto;   /* 高さを超えたら縦スクロールバーを表示 */
-  border: 1px solid #e0e0e0;
-  border-radius: 12px; /* 全体を角丸にする */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  background-color: #fff;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #fff;
+    font-family: 'Kiwi Maru', sans-serif;
+    /* Gridコンテナとして設定 */
+    display: grid;
+    grid-template-columns: 1fr; /* 1列のグリッド */
 }
 
-.drink-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Kiwi Maru', sans-serif;
+/* ヘッダーと行の共通スタイル */
+.table-header,
+.accordion-toggle,
+.sub-item-row {
+    display: grid;
+    /* 列の幅を定義 */
+    grid-template-columns: 2fr 1fr 1fr; 
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px dotted #A9BDDB;
 }
 
-/* 表のヘッダー */
-.drink-table th {
-  position: sticky; /* コンテナ内で固定 */
-  top: 0;           /* コンテナの最上部に固定 */
-  background-color: #26466D;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 14px 15px;
-  text-align: center;
-  z-index: 10;
-  /* ヘッダーの下に細い線を追加して境界を明確に */
-  border-bottom: 2px solid #1a324f;
+/* ヘッダーのスタイル */
+.table-header {
+    position: sticky;
+    top: 0;
+    background-color: #26466D;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 2px solid #1a324f;
 }
 
-/* 表のデータセル */
-.drink-table td {
-  padding: 10px 15px;
-  border-bottom: 1px dotted #A9BDDB; /* ← 紺色の薄い点線に変更 */
-  font-size: 15px;
-  text-align: left;
+/* セルの共通スタイル */
+.item-cell, .size-cell, .quantity-cell {
+    padding: 0;
 }
 
+/* セルの配置を調整 */
+.item-cell { text-align: left; }
+.size-cell, .quantity-cell { text-align: center; }
+.sub-item { padding-left: 20px; } /* 子項目のインデント */
 
-/* 中央揃えにしたい列の指定 */
-.drink-table td:nth-child(2),
-.drink-table td:nth-child(3) {
-  text-align: center;
+/* 親項目（アコーディオンのトグル部分）のスタイル */
+.accordion-toggle {
+    cursor: pointer;
+    position: relative;
+    font-size: 15px;
 }
 
-/* 最後の行の下線を消す */
-.drink-table tbody tr:last-child td {
-  border-bottom: none;
+.accordion-toggle:nth-of-type(even) {
+    background-color: #f9fbfd;
 }
 
-/* ストライプ（一行おきの背景色）を少しだけ濃くして視認性アップ */
-.drink-table tbody tr:nth-child(even) {
-  background-color: #f9fbfd;
-}
-
-/* スクロールバーのデザイン (WebKitブラウザ向け - Chrome, Safari) */
-.table-scroll-container::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2); /* 薄いグレーで普段は目立たなく */
-  border-radius: 10px;
-}
-
-.table-scroll-container::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.4); /* ホバー時にもう少し濃く */
-}
-
-/* アコーディオンの開閉アニメーション */
+/* 子項目（アコーディオンの内容）のスタイル */
 .accordion-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
-    padding-top: 0; /* paddingもアニメーション対象にする */
-    padding-bottom: 0;
 }
 
-/* 開いたときのスタイル */
 .accordion-content.active {
     max-height: 200px; /* 十分な高さを指定 */
     opacity: 1;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
-/* 親項目のスタイル */
-.accordion-toggle {
-    cursor: pointer;
-    position: relative;
-    padding: 10px 0;
-    border-bottom: 1px dotted #A9BDDB;
-}
-
-/* 触ったら動くマーク */
+/* 矢印アイコン */
 .accordion-toggle::after {
     content: "";
     position: absolute;
-    right: 0;
+    right: 15px; /* 右端に配置 */
     top: 50%;
-    transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%);
     width: 16px;
     height: 16px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath fill='%23555555' d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z'/%3E%3C/svg%3E");
@@ -530,20 +478,10 @@ label {
     transition: transform 0.3s ease;
 }
 
-/* 親項目が開いたときのマークのスタイル */
 .accordion-toggle.active::after {
     transform: translateY(-50%) rotate(90deg);
 }
 
-/* 内部のテーブルのスタイル */
-.nested-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.nested-table td {
-    padding: 5px 15px;
-}
 
 
 
