@@ -45,22 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener("click", () => {
             toggle.classList.toggle("active");
             
-            // 次の要素が accordion-wrapper であることを想定
-            const wrapper = toggle.nextElementSibling;
-            if (wrapper && wrapper.classList.contains('accordion-wrapper')) {
+            // 次の要素が accordion-content であることを想定
+            const content = toggle.nextElementSibling;
+            if (content && content.classList.contains('accordion-content')) {
                 if (toggle.classList.contains('active')) {
-                    wrapper.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px"; // 動的に高さを設定
+                    content.style.opacity = 1;
                 } else {
-                    wrapper.classList.remove('active');
+                    content.style.maxHeight = 0;
+                    content.style.opacity = 0;
                 }
             }
         });
     });
 });
-
-
-
-
-
-
-
