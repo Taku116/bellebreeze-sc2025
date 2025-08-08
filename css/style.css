@@ -402,6 +402,7 @@ label {
     /* Gridコンテナとして設定 */
     display: grid;
     grid-template-columns: 1fr; /* 1列のグリッド */
+    padding: 0 20px;
 }
 
 /* ヘッダーと行の共通スタイル */
@@ -434,7 +435,7 @@ label {
 }
 
 /* セルの配置を調整 */
-.item-cell { text-align: left; }
+.item-cell { text-align: center; }
 .size-cell, .quantity-cell { text-align: center; }
 .sub-item { padding-left: 20px; } /* 子項目のインデント */
 
@@ -524,6 +525,11 @@ label {
 .accordion-item:nth-of-type(even) .accordion-toggle,
 .simple-item:nth-of-type(even) {
     background-color: #f9fbfd;
+}
+/* simple-itemとaccordion-itemの下線は、最後の項目で消す */
+.accordion-item:last-child .accordion-toggle,
+.simple-item:last-child {
+    border-bottom: none;
 }
 
 
