@@ -489,32 +489,31 @@ label {
 }
 
 /* アコーディオンの開閉アニメーション */
-.accordion-content {
+.accordion-wrapper {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
 }
 
-.accordion-content.active {
-    max-height: 100px; /* 適当な大きめの値 */
+.accordion-wrapper.active {
+    max-height: 200px; /* 十分な高さを指定 */
     opacity: 1;
 }
 
 /* 触ったら動くマーク */
-.accordion-toggle td:first-child {
+.accordion-toggle td {
     position: relative;
-    padding-left: 20px; /* アイコン用の余白 */
+    padding-left: 20px;
     cursor: pointer;
 }
 
-/* SVGアイコンを背景画像として指定 */
-.accordion-toggle td:first-child::after {
+.accordion-toggle td::after {
     content: "";
     position: absolute;
     left: 0;
     top: 50%;
-    transform: translateY(-50%) rotate(0deg); /* 初期状態 */
+    transform: translateY(-50%) rotate(0deg);
     width: 16px;
     height: 16px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath fill='%23555555' d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z'/%3E%3C/svg%3E");
@@ -524,9 +523,20 @@ label {
     transition: transform 0.3s ease;
 }
 
-/* 開いたらアイコンを90度回転させる */
-.accordion-toggle.active td:first-child::after {
+.accordion-toggle.active td::after {
     transform: translateY(-50%) rotate(90deg);
+}
+
+/* 内部のテーブルのスタイル */
+.nested-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.nested-table td {
+    padding: 10px 15px;
+    border-bottom: 1px dotted #A9BDDB;
+    font-size: 15px;
 }
 
 
