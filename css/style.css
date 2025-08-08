@@ -428,6 +428,7 @@ label {
     font-size: 16px;
     text-align: center;
     border-bottom: 2px solid #1a324f;
+    z-index: 1;
 }
 
 /* セルの共通スタイル */
