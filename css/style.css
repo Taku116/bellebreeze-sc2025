@@ -481,6 +481,34 @@ label {
 .accordion-toggle.active::after {
     transform: translateY(-50%) rotate(90deg);
 }
+/* h2要素を囲むラッパーで中央揃えを実現 */
+.h2-wrapper {
+    text-align: center;
+}
+
+/* h2要素自体のスタイル */
+.drink-list-container h2 {
+    font-family: 'Kiwi Maru', sans-serif;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+    /* この設定でh2の幅が文字の長さになります */
+    display: inline-block;
+}
+
+/* h2の下線のスタイル */
+.drink-list-container h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* 親要素の幅に合わせて下線を引きます */
+    width: 100%;
+    height: 3px;
+    background-color: #26466D;
+    border-radius: 2px;
+}
 
 
 
