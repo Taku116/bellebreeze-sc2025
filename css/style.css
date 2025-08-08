@@ -509,6 +509,22 @@ label {
     background-color: #26466D;
     border-radius: 2px;
 }
+/* 「ただの行」のスタイル */
+.simple-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px dotted #A9BDDB;
+    font-family: 'Kiwi Maru', sans-serif;
+    font-size: 15px;
+}
+
+/* ストライプ（一行おきの背景色）のスタイルをsimple-itemにも適用 */
+.accordion-item:nth-of-type(even) .accordion-toggle,
+.simple-item:nth-of-type(even) {
+    background-color: #f9fbfd;
+}
 
 
 
