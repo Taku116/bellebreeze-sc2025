@@ -43,18 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggles.forEach(toggle => {
         toggle.addEventListener("click", () => {
+            const content = toggle.nextElementSibling;
+            
             toggle.classList.toggle("active");
             
-            // 次の要素が accordion-content であることを想定
-            const content = toggle.nextElementSibling;
-            if (content && content.classList.contains('accordion-content')) {
-                if (toggle.classList.contains('active')) {
-                    content.style.maxHeight = content.scrollHeight + "px"; // 動的に高さを設定
-                    content.style.opacity = 1;
-                } else {
-                    content.style.maxHeight = 0;
-                    content.style.opacity = 0;
-                }
+            if (toggle.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = 1;
+            } else {
+                content.style.maxHeight = 0;
+                content.style.opacity = 0;
             }
         });
     });
