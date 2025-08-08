@@ -402,7 +402,8 @@ label {
     /* Gridコンテナとして設定 */
     display: grid;
     grid-template-columns: 1fr; /* 1列のグリッド */
-    padding: 0 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* ヘッダーと行の共通スタイル */
