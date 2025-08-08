@@ -35,3 +35,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+// アコーディオン機能
+document.addEventListener('DOMContentLoaded', () => {
+    const headers = document.querySelectorAll('.accordion-header');
+
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            // クリックされたヘッダーの次の要素から、アコーディオン項目を探す
+            let nextElement = header.nextElementSibling;
+            while (nextElement && nextElement.classList.contains('accordion-content')) {
+                // 表示/非表示を切り替える
+                if (nextElement.style.display === 'none' || nextElement.style.display === '') {
+                    nextElement.style.display = 'table-row';
+                } else {
+                    nextElement.style.display = 'none';
+                }
+                nextElement = nextElement.nextElementSibling;
+            }
+        });
+    });
+});
+
+
+
