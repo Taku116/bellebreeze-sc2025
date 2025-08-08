@@ -39,24 +39,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // アコーディオン機能
 document.addEventListener('DOMContentLoaded', () => {
-    const headers = document.querySelectorAll('.accordion-header');
+    // 既存のアコーディオン機能のJavaScriptを修正
+    const toggles = document.querySelectorAll(".accordion-toggle");
 
-    headers.forEach(header => {
-        header.addEventListener('click', () => {
+    toggles.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            toggle.classList.toggle("active");
+
             // クリックされたヘッダーの次の要素から、アコーディオン項目を探す
-            let nextElement = header.nextElementSibling;
+            let nextElement = toggle.nextElementSibling;
             while (nextElement && nextElement.classList.contains('accordion-content')) {
                 // 表示/非表示を切り替える
-                if (nextElement.style.display === 'none' || nextElement.style.display === '') {
-                    nextElement.style.display = 'table-row';
+                if (toggle.classList.contains('active')) {
+                    nextElement.classList.add('active');
                 } else {
-                    nextElement.style.display = 'none';
+                    nextElement.classList.remove('active');
                 }
                 nextElement = nextElement.nextElementSibling;
             }
         });
     });
 });
+
+
+
 
 
 
